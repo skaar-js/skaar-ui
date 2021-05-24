@@ -1,7 +1,7 @@
 // const {randomId} = require("./utils");
 const {dispatchTask, scheduler} = require("./scheduler");
 const {createDom, createNodeDom, createViewDom, createChildrenDom} = require("./render");
-const {error} = require("../core/logging");
+const {error} = require("@skaar/core/logging");
 const {patchAttrs, patchEvents} = require("./patch-element");
 const {createText, createNode} = require("./vnode");
 const {normalize, sameProps} = require("./utils");

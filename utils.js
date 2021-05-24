@@ -1,7 +1,7 @@
 const JSS = require("./jss");
 const {setEvent} = require("../dom/event");
-const {forEach} = require("../core/collections");
-const {isPrim,isArr,isStr,isVal} = require("../core/types");
+const {forEach} = require("@skaar/core/collections");
+const {isPrim,isArr,isStr,isVal} = require("@skaar/core/types");
 
 function randomId() {
     return (Date.now().toString(24).slice(2)+ Math.random().toString(24).slice(6))

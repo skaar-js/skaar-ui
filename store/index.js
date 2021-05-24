@@ -1,5 +1,5 @@
-// const {map} = require("../../core/collections");
-const {error} = require("../../core/logging");
+// const {map} = require("../@skaar/core/collections");
+const {error} = require("../@skaar/core/logging");
 
 function Store({state, mutations}) {
     this.state = state || {};

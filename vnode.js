@@ -1,6 +1,6 @@
 const TYPE = require("./type");
-const {deepClone} = require("../core/collections");
-const {flatMap} = require("../core/collections");
+const {deepClone} = require("@skaar/core/collections");
+const {flatMap} = require("@skaar/core/collections");
 const {setElementProps, compileProps, normalize} = require("./utils");
 
 /**

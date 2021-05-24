@@ -1,12 +1,12 @@
-require("../core/scope")
+require("@skaar/core/scope")
 const TYPE = require("./type");
 const {updateView} = require("./patch");
-const {debounce} = require("../core/functions");
-const {error} = require("../core/logging");
+const {debounce} = require("@skaar/core/functions");
+const {error} = require("@skaar/core/logging");
 const {randomId, normalize, sameProps} = require("./utils");
 const {createNode} = require("./vnode");
-const {warn} = require("../core/logging");
-const {deepClone} = require("../core/collections");
+const {warn} = require("@skaar/core/logging");
+const {deepClone} = require("@skaar/core/collections");
 const {createText} = require("./vnode");
 
 /**

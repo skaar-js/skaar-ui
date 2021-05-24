@@ -1,5 +1,5 @@
-const {clearEvent, setEvent} = require("../dom/event");
-const {forEach} = require("../core/collections");
+const {clearEvent, setEvent} = require("dom/event");
+const {forEach} = require("@skaar/core/collections");
 const {compileStyles} = require("./utils");
 
 function patchAttrs(newAttrs, oldAttrs, element) {

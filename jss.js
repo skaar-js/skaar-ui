@@ -1,5 +1,5 @@
-const {kebab} = require("../core/cases")
-const {forEach} = require("../core/collections")
+const {kebab} = require("@skaar/core/cases")
+const {forEach} = require("@skaar/core/collections")
 
 function generateStyles(jss) {
     let styles = []

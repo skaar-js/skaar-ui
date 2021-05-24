@@ -1,5 +1,5 @@
-const {error} = require("../core/logging");
-const {flatMap} = require("../core/collections");
+const {error} = require("@skaar/core/logging");
+const {flatMap} = require("@skaar/core/collections");
 const {createNode} = require("./vnode");
 const {normalize, setElementProps} = require("./utils");
 const {createText} = require("./vnode");

@@ -1,14 +1,14 @@
 'use strict';
 
-require("../core/scope");
+require("@skaar/core/scope");
 const TYPE = require("./type");
 const {updateView} = require("./patch");
-const {debounce} = require("../core/functions");
-const {error: error$1} = require("../core/logging");
+const {debounce} = require("@skaar/core/functions");
+const {error: error$1} = require("@skaar/core/logging");
 const {randomId, normalize: normalize$2, sameProps} = require("./utils");
 const {createNode: createNode$1} = require("./vnode");
-const {warn} = require("../core/logging");
-const {deepClone} = require("../core/collections");
+const {warn} = require("@skaar/core/logging");
+const {deepClone} = require("@skaar/core/collections");
 const {createText: createText$2} = require("./vnode");
 
 /**
@@ -231,8 +231,8 @@ function t(text) {
 
 module.exports = {h: h$1, t};
 
-const {error} = require("../core/logging");
-const {flatMap} = require("../core/collections");
+const {error} = require("@skaar/core/logging");
+const {flatMap} = require("@skaar/core/collections");
 require("./vnode");
 const {normalize, setElementProps} = require("./utils");
 const {createText} = require("./vnode");

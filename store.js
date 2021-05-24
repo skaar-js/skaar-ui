@@ -1,5 +1,5 @@
-const {debounce} = require("../core/functions");
-const {isVal} = require("../core/types");
+const {debounce} = require("@skaar/core/functions");
+const {isVal} = require("@skaar/core/types");
 const {View} = require("./view");
 
 function Store(reducer) {
