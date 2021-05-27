@@ -8,7 +8,7 @@
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function relLeft(e) {
+export function relLeft(e) {
     return e.offsetLeft
 }
 
@@ -17,7 +17,7 @@ function relLeft(e) {
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function absLeft(e) {
+export function absLeft(e) {
     return e.clientLeft
 }
 
@@ -26,7 +26,7 @@ function absLeft(e) {
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function relWidth(e) {
+export function relWidth(e) {
     return e.offsetWidth
 }
 
@@ -35,7 +35,7 @@ function relWidth(e) {
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function absWidth(e) {
+export function absWidth(e) {
     return e.clientWidth
 }
 
@@ -44,7 +44,7 @@ function absWidth(e) {
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function relRight(e) {
+export function relRight(e) {
     return relLeft(e) + relWidth(e)
 }
 
@@ -53,7 +53,7 @@ function relRight(e) {
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function absRight(e) {
+export function absRight(e) {
     return absLeft(e) + absWidth(e)
 }
 
@@ -62,7 +62,7 @@ function absRight(e) {
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function relTop(e) {
+export function relTop(e) {
     return e.offsetTop
 }
 
@@ -71,7 +71,7 @@ function relTop(e) {
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function absTop(e) {
+export function absTop(e) {
     return e.clientTop
 }
 
@@ -80,7 +80,7 @@ function absTop(e) {
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function relHeight(e) {
+export function relHeight(e) {
     return e.offsetHeight
 }
 
@@ -89,7 +89,7 @@ function relHeight(e) {
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function absHeight(e) {
+export function absHeight(e) {
     return e.clientHeight
 }
 
@@ -98,7 +98,7 @@ function absHeight(e) {
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function relBottom(e) {
+export function relBottom(e) {
     return relTop(e) + relHeight(e)
 }
 
@@ -107,8 +107,8 @@ function relBottom(e) {
  * @param {HTMLElement|Element|Node} e
  * @return {number}
  */
-function absBottom(e) {
+export function absBottom(e) {
     return absTop(e) + absHeight(e)
 }
 
-module.exports = {left: relLeft, leftWin: absLeft, right: relRight, rightWin: absRight, width: relWidth, widthWin: absWidth}
+// module.exports = {left: relLeft, leftWin: absLeft, right: relRight, rightWin: absRight, width: relWidth, widthWin: absWidth}

@@ -1,12 +1,12 @@
 // const {randomId} = require("./utils");
-const {dispatchTask, scheduler} = require("./scheduler");
-const {createDom, createNodeDom, createViewDom, createChildrenDom} = require("./render");
-const {error} = require("@skaar/core/logging");
-const {patchAttrs, patchEvents} = require("./patch-element");
-const {createText, createNode} = require("./vnode");
-const {normalize, sameProps} = require("./utils");
+import {dispatchTask} from "./scheduler";
+import {createChildrenDom, createDom, createNodeDom, createViewDom} from "./render";
+import {error} from "./core/logging";
+import {patchAttrs, patchEvents} from "./patch-element";
+import {createNode, createText} from "./vnode";
+import {normalize, sameProps} from "./utils";
 
-function updateView(view) {
+export function updateView(view) {
     // view.$isDirty = true;
     dispatchTask(() => {
         patchView(view, view.props, view.$children);
@@ -14,12 +14,12 @@ function updateView(view) {
     }, view)
 }
 
-function patchView(view, props, children) {
+export function patchView(view, props, children) {
     if (view.shouldUpdate) {
         try {
             if (!view.shouldUpdate.call(view, {oldProps: view.props, newProps: props})) return;
         } catch (e) {
-            setTimeout(error('(' + view.$name + ').shouldUpdate', e), 0);
+            setTimeout(()=>error('(' + view.$name + ').shouldUpdate', e), 0);
         }
     } else {
         if (!view.$isDirty) return;
@@ -28,7 +28,7 @@ function patchView(view, props, children) {
         try {
             view.beforeUpdate.call(view, props);
         } catch (e) {
-            setTimeout(error('(' + view.$name + ').Updated', e));
+            setTimeout(()=>error('(' + view.$name + ').Updated', e));
         }
     }
     view.$updateWith(props, children);
@@ -46,7 +46,7 @@ function patchView(view, props, children) {
     }
 }
 
-function patchNode(_new, _cur, view) {
+export function patchNode(_new, _cur, view) {
     if (_new.tag === _cur.tag) {
         _new.element = _cur.element;
         _new.element.__node = _new;
@@ -71,7 +71,7 @@ function patchNode(_new, _cur, view) {
 
 }
 
-function patchText(_new, _cur) {
+export function patchText(_new, _cur) {
     if (_new.text !== _cur.text) {
         _cur.element.nodeValue = _new.text;
     }
@@ -79,7 +79,7 @@ function patchText(_new, _cur) {
     _new.element.__node = _new;
 }
 
-function swapElements(_new, _cur) {
+export function swapElements(_new, _cur) {
     let curSlot = createNodeDom(createNode('div', {style: 'display: none'}));
     let curNodes = _cur.$isView ? _cur.$elements : [_cur.element];
     let newNodes = _new.$isView ? _new.$elements : [_new.element];
@@ -88,7 +88,7 @@ function swapElements(_new, _cur) {
     curSlot.replaceWith(...newNodes);
 }
 
-function patchOrReplaceView(_new, _cur, newNodes, currentNodes, idx, curLen, newLen, parentView, rootElement) {
+export function patchOrReplaceView(_new, _cur, newNodes, currentNodes, idx, curLen, newLen, parentView, rootElement) {
     let keysMatch = false;
     if (_new.props.key !== undefined) {
         let prev = -1;
@@ -133,7 +133,7 @@ function patchOrReplaceView(_new, _cur, newNodes, currentNodes, idx, curLen, new
 
 }
 
-function replaceNodes(_new, _cur, parentView, rootElement) {
+export function replaceNodes(_new, _cur, parentView, rootElement) {
     const el = createDom(_new, parentView, rootElement);
     let anchor = undefined;
     if (_cur.isNode || _cur.isText) {
@@ -150,7 +150,7 @@ function replaceNodes(_new, _cur, parentView, rootElement) {
     }
 }
 
-function patchNodes(newNodes, currentNodes, parentView, rootElement) {
+export function patchNodes(newNodes, currentNodes, parentView, rootElement) {
     if (!rootElement) throw Error('patchNodes: rootElement is not defined');
     let newLen = newNodes.length;
     let curLen = currentNodes.length;
@@ -185,4 +185,4 @@ function patchNodes(newNodes, currentNodes, parentView, rootElement) {
     return newNodes;
 }
 
-module.exports = {patchView, updateView}
+export default {patchView, updateView};

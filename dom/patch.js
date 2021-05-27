@@ -2,12 +2,13 @@
  * @module DOM
  * @memberOf dom
  */
-const {error} = require("@skaar/core/logging");
-const {forEach} = require("@skaar/core/collections");
-const {isVal, isArr, isObj, isEl, hasField} = require("@skaar/core/types");
-const {setAttr} = require("./attributes");
-const {setEvent} = require("./event");
-// const {cls} = require("./classes");
+import {error} from "../core/logging";
+import {forEach} from "../core/collections";
+import {hasField, isArr, isEl, isObj, isVal} from "../core/types";
+import {setAttr} from "./attributes";
+import {setEvent} from "./event";
+
+
 const ATR = 'atr'
 const CLS = 'cls'
 const EVT = 'evt'
@@ -17,7 +18,7 @@ const EVT = 'evt'
  * @param {HTMLElement|Element|Node} node - DOM element/node
  * @param {Object} object - patch data {atr: Attributes, cls: Classes, evt: Events}
  */
-function patch(node, object) {
+export function patch(node, object) {
     if (!isVal(node)) {
         error(`Node is ${node}`)
         return
@@ -50,4 +51,4 @@ function patch(node, object) {
     }
 }
 
-module.exports = {patch}
+// module.exports = {patch}

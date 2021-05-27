@@ -1,8 +1,8 @@
-const {clearEvent, setEvent} = require("dom/event");
-const {forEach} = require("@skaar/core/collections");
-const {compileStyles} = require("./utils");
+import {clearEvent, setEvent} from "./dom/event";
+import {forEach} from "./core/collections";
+import {compileStyles} from "./utils";
 
-function patchAttrs(newAttrs, oldAttrs, element) {
+export function patchAttrs(newAttrs, oldAttrs, element) {
     const newKeys = Object.keys(newAttrs)
     const currentKeys = Object.keys(oldAttrs)
 
@@ -36,7 +36,7 @@ function patchAttrs(newAttrs, oldAttrs, element) {
     }
 }
 
-function patchEvents(newEvents={}, oldEvents={}, element) {
+export function patchEvents(newEvents={}, oldEvents={}, element) {
     forEach(oldEvents, function (listener, event) {
         if (newEvents[event] !== listener) {
             clearEvent(element, event)
@@ -48,7 +48,7 @@ function patchEvents(newEvents={}, oldEvents={}, element) {
     })
 }
 
-module.exports = {
+export default {
     patchAttrs,
     patchEvents
-}
+};

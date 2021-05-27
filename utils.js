@@ -1,13 +1,13 @@
-const JSS = require("./jss");
-const {setEvent} = require("../dom/event");
-const {forEach} = require("@skaar/core/collections");
-const {isPrim,isArr,isStr,isVal} = require("@skaar/core/types");
+import JSS from "./jss";
+import {setEvent} from "./dom/event";
+import {forEach} from "./core/collections";
+import {isArr, isPrim, isStr, isVal} from "./core/types";
 
-function randomId() {
+export function randomId() {
     return (Date.now().toString(24).slice(2)+ Math.random().toString(24).slice(6))
 }
 
-function normalize(children, {createText, parent, empty=[], list}) {
+export function normalize(children, {createText, parent, empty=[], list}) {
     if (!(children instanceof Array)) {
         if (children === null || children === undefined)
             return empty
@@ -45,15 +45,15 @@ function normalize(children, {createText, parent, empty=[], list}) {
 }
 
 
-function isEventPropKey(key) {
+export function isEventPropKey(key) {
     return /on[A-Z]+/.test(key)
 }
 
-function normalizeEventName(eventName) {
+export function normalizeEventName(eventName) {
     return eventName.slice(2).toLowerCase()
 }
 
-function compileProps(props) {
+export function compileProps(props) {
     const cats = {
         events: {},
         attrs: {}
@@ -67,14 +67,14 @@ function compileProps(props) {
     return cats
 }
 
-function compileStyles(styles, joinWith) {
+export function compileStyles(styles, joinWith) {
     if (!isVal(styles)) return ''
     else if (isStr(styles)) return styles
     else if (isArr(styles)) return styles.join(joinWith)
     return JSS.generateCss(styles, joinWith)
 }
 
-function setElementProps(element, attrs, events, view) {
+export function setElementProps(element, attrs, events, view) {
     if (attrs) {
         forEach(attrs, (val, key) => {
             if (key === 'style') {
@@ -94,11 +94,11 @@ function setElementProps(element, attrs, events, view) {
     }
 }
 
-function randomHexColor() {
+export function randomHexColor() {
     return '#'+(Math.random().toString(16)).slice(2, 8)
 }
 
-function sameProps(currentProps={}, newProps={}) {
+export function sameProps(currentProps={}, newProps={}) {
     const curKeys = Object.keys(currentProps)
     const newKeys = Object.keys(newProps)
     if (curKeys.length !== newKeys.length) return false
@@ -108,4 +108,4 @@ function sameProps(currentProps={}, newProps={}) {
     return true
 }
 
-module.exports = {randomId, normalize, setElementProps, compileProps, compileStyles, sameProps, randomHexColor}
+export default {randomId, normalize, setElementProps, compileProps, compileStyles, sameProps, randomHexColor};

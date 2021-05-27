@@ -1,6 +1,6 @@
-import "./view";
-import "./h";
-import "./render";
+import {View} from "./view";
+import {h} from "./h";
+import {render} from "./render";
 
 /**
  * @type {function(*): View}

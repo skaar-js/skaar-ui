@@ -1,8 +1,9 @@
-const {normalize} = require("./utils");
-const {renderView} = require("./view");
-const {createNode, createText} = require("./vnode");
+import {normalize} from "./utils";
+import {renderView} from "./view";
+import {createNode, createText} from "./vnode";
 
-function h(type, prop, ...children) {
+
+export function h(type, prop, ...children) {
     if (type === null) {
         return children || [];
     }
@@ -17,7 +18,7 @@ function h(type, prop, ...children) {
     return createNode(type, prop, normalize(children, {createText}));
 }
 
-function t(text) {
+export function t(text) {
     return createText(text)
 }
 

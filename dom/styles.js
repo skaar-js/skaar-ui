@@ -3,8 +3,8 @@
  * @memberOf dom
  */
 
-const {isUnd, isStr} = require("@skaar/core/types")
-const {filter, contains} = require("@skaar/core/collections")
+import {isStr, isUnd} from "../core/types";
+import {contains, filter} from "../core/collections";
 
 const emptyStyle = ['', 'initial', 'unset', undefined, null];
 
@@ -15,7 +15,7 @@ const emptyStyle = ['', 'initial', 'unset', undefined, null];
  * @param {String} [v] - style property value
  * @return {Array|Object|String|*|string}
  */
-function style(e, p, v) {
+export function style(e, p, v) {
     if (isUnd(p)) {
         // let stl = {};
         let cs = getComputedStyle(e);
@@ -33,9 +33,9 @@ function style(e, p, v) {
  * @param {String} p - style property name
  * @return {boolean}
  */
-function hasStyle(e, p) {
+export function hasStyle(e, p) {
     let s = style(e, p);
     return !contains(emptyStyle, s)
 }
 
-module.exports = {style, hasStyle}
+// module.exports = {style, hasStyle}

@@ -1,7 +1,6 @@
-const TYPE = require("./type");
-const {deepClone} = require("@skaar/core/collections");
-const {flatMap} = require("@skaar/core/collections");
-const {setElementProps, compileProps, normalize} = require("./utils");
+import TYPE from "./type";
+import {deepClone, flatMap} from "./core/collections";
+import {compileProps, normalize, setElementProps} from "./utils";
 
 /**
  *
@@ -10,7 +9,7 @@ const {setElementProps, compileProps, normalize} = require("./utils");
  * @param {any[]} [children]
  * @constructor
  */
-function VNode(tag = "#text", prop, children) {
+export function VNode(tag = "#text", prop, children) {
     tag = tag.toLowerCase();
     this.tag = tag;
     this.element = undefined;
@@ -60,12 +59,12 @@ Object.defineProperty(VNode.prototype, 'isEmpty', {
 VNode.prototype.$destroy = function () {
     this.element.remove();
 }
-function createNode(tag, props, children) {
+export function createNode(tag, props, children) {
     return new VNode(tag, props, children)
 }
 
-function createText(text) {
+export function createText(text) {
     return new VNode("#text", text)
 }
 
-module.exports = {VNode, TYPE, createNode, createText}
+export default {VNode, TYPE, createNode, createText};

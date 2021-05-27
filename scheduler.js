@@ -5,7 +5,7 @@ const scheduler = Object.seal({
     idle: 0
 })
 
-function setFrameInterval(fn, interval) {
+export function setFrameInterval(fn, interval) {
     let busy = false;
     const queue = [];
 
@@ -25,7 +25,7 @@ function setFrameInterval(fn, interval) {
 
 }
 
-function runner() {
+export function runner() {
     if (scheduler.queue.length === 0) {
         scheduler.idle++;
         if (scheduler.idle>3) {
@@ -47,15 +47,15 @@ function runner() {
     setTimeout(runner, 20)
 }
 
-function start() {
+export function start() {
     if (!scheduler.running) setTimeout(runner, 1);
 }
 
-function dispatchTask(task) {
+export function dispatchTask(task) {
     if (task) {
         scheduler.queue.push(task);
         start()
     }
 }
 
-module.exports = {dispatchTask, scheduler}
+export default {dispatchTask, scheduler};

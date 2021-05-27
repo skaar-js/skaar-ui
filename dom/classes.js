@@ -2,14 +2,15 @@
  * @module DOM
  * @memberOf dom
  */
-const T = require("@skaar/core/types");
-const {toggle, any, all, contains, filter, flatMap, forEach} = require("@skaar/core/collections");
+import {isEmpty, isArr, isStr, isVal} from "../core/types";
+import {all, any, contains, filter, flatMap, forEach, toggle} from "../core/collections";
+
 
 /**
  * Element classes CRUD wrapper
  * @memberOf dom
  */
-class Classes {
+export class Classes {
     /**
      * Split element `className`
      * @param className
@@ -31,9 +32,9 @@ class Classes {
             set(v) {
                 let upd = false;
                 if (this.classes) upd = true;
-                if (!T.isVal(v) || T.isEmpty(v)) this.classes = [];
-                else if (T.isArr(v)) this.classes = v;
-                else if (T.isStr(v)) this.classes = Classes.split(v);
+                if (!isVal(v) || isEmpty(v)) this.classes = [];
+                else if (isArr(v)) this.classes = v;
+                else if (isStr(v)) this.classes = Classes.split(v);
                 else if (v instanceof DOMTokenList) this.classes = Array.from(v);
                 if (upd)
                     this.__update__();

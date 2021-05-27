@@ -1,2 +1,3 @@
-const {h} =  require('./h');
-module.exports = {jsx: h}
+import {h} from "./h";
+
+export default {jsx: h};

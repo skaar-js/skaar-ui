@@ -1,4 +1,4 @@
-const {h} = require('./h');
+import {h} from "./h";
 function a(args, ...children) {return h('a', args, ...children)}
 function abbr(args, ...children) {return h('abbr', args, ...children)}
 function address(args, ...children) {return h('address', args, ...children)}
@@ -61,7 +61,7 @@ function tr(args, ...children) {return h('tr', args, ...children)}
 function u(args, ...children) {return h('u', args, ...children)}
 function ul(args, ...children) {return h('ul', args, ...children)}
 
-module.exports = {
+export default {
     a,
 	abbr,
 	address,
@@ -122,4 +122,4 @@ module.exports = {
 	thead,
 	tr,
 	u,
-	ul, h}
+	ul, h};

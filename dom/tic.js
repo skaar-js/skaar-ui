@@ -3,7 +3,7 @@
  * @memberOf dom
  */
 
-const {contains} = require("@skaar/core/collections");
+import {contains} from "../core/collections";
 
 /**
  * @class
@@ -31,7 +31,7 @@ class QueryParams {
  *  parseQuery('div#root.main.container');
  *  // returns {tag: 'div', id: 'root', classes: ['main', 'container']}
  */
-function parseQuery(query, def={}) {
+export function parseQuery(query, def={}) {
     let params = new QueryParams();
     params.tag = "";
     query = query.trim();
@@ -64,4 +64,4 @@ function parseQuery(query, def={}) {
     return params;
 }
 
-module.exports = {parseQuery}
+// module.exports = {parseQuery}

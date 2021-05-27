@@ -1,8 +1,8 @@
-const {debounce} = require("@skaar/core/functions");
-const {isVal} = require("@skaar/core/types");
-const {View} = require("./view");
+import {debounce} from "./core/functions";
+import {isVal} from "./core/types";
+import {View} from "./view";
 
-function Store(reducer) {
+export function Store(reducer) {
     var state = reducer(undefined, {});
     var listeners = [];
 
@@ -30,15 +30,15 @@ function Store(reducer) {
     }
 
 }
-function createStore(reducer) {
+export function createStore(reducer) {
     return new Store(reducer);
 }
-function createGlobalStore(reducer) {
+export function createGlobalStore(reducer) {
     View.prototype.$store = createStore(reducer);
 }
 
-function setGlobalStore(store) {
+export function setGlobalStore(store) {
     View.prototype.$store = store;
 }
 
-module.exports = {Store, createStore, createGlobalStore, setGlobalStore}
+export default {Store, createStore, createGlobalStore, setGlobalStore};

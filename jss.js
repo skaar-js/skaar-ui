@@ -1,5 +1,5 @@
-const {kebab} = require("@skaar/core/cases")
-const {forEach} = require("@skaar/core/collections")
+import {kebab} from "./core/cases";
+import {forEach} from "./core/collections";
 
 function generateStyles(jss) {
     let styles = []
@@ -13,4 +13,4 @@ function generateCss(jss, joinWith='\n') {
     return generateStyles(jss).sort((a, b)=>a[0].localeCompare(b[0])).join(joinWith);
 }
 
-module.exports = {generateStyles, generateCss}
+export default {generateStyles, generateCss};

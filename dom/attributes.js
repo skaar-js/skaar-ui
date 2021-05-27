@@ -3,15 +3,15 @@
  * @memberOf dom
  */
 
-const I = require("@skaar/core/collections")
-const T = require("@skaar/core/types")
+import * as I from "../core/collections";
+import * as T from "../core/types";
 
 /**
  * Get all element attributes
  * @param {HTMLElement|Element|Node} e - element
  * @return {Object}
  */
-function getAttributes(e) {
+export function getAttributes(e) {
     let atr = {};
     I.forEach(e.getAttributeNames(), (n) => atr[n] = e.getAttribute(n));
     return atr;
@@ -24,7 +24,7 @@ function getAttributes(e) {
  * @param {String} [v] - attribute value
  * @return {boolean}
  */
-function hasAttr(e, a, v) {
+export function hasAttr(e, a, v) {
     if (e.hasAttribute(a)) {
         if (v) return e.getAttribute(a) === v
         return true
@@ -39,7 +39,7 @@ function hasAttr(e, a, v) {
  * @param {String} a - attribute name
  * @return {string} - attribute value
  */
-function getAttr(e, a) {
+export function getAttr(e, a) {
     return e.getAttribute(a)
 }
 
@@ -49,7 +49,7 @@ function getAttr(e, a) {
  * @param {String} a - attribute name
  * @param {String} [v] - attribute value
  */
-function setAttr(e, a, v) {
+export function setAttr(e, a, v) {
     if (T.isArr(a)) {
         I.forEach(a, (n) => this.set(n, v))
     } else if (T.isObj(a)) {
@@ -63,7 +63,7 @@ function setAttr(e, a, v) {
  * Element attributes CRUD wrapper
  * @memberOf dom
  */
-class Attributes {
+export class Attributes {
     /**
      * @param {HTMLElement|Element|Node} e - element
      */
@@ -131,8 +131,8 @@ class Attributes {
  * @param {HTMLElement|Element|Node} e - element
  * @return {dom.Attributes}
  */
-function attrs(e) {
+export function attrs(e) {
     return new Attributes(e)
 }
 
-module.exports = {getAttributes, Attributes, getAttr, hasAttr, setAttr, attrs}
+// module.exports = {getAttributes, Attributes, getAttr, hasAttr, setAttr, attrs}

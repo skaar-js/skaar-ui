@@ -3,11 +3,12 @@
  * @memberOf dom
  */
 
-const scope = require("@skaar/core/scope");
-const {isArr, hasField, isEmpty} = require("@skaar/core/types");
-const {contains, forEach, filter} = require("@skaar/core/collections");
-const {error} = require("@skaar/core/logging");
-const {funcBodyEquals} = require("@skaar/core/functions");
+import scope from "../core/scope";
+import {hasField, isArr, isEmpty} from "../core/types";
+import {contains, filter, forEach} from "../core/collections";
+import {error} from "../core/logging";
+import {funcBodyEquals} from "../core/functions";
+
 
 /**
  * Set listener for event type(s) on element, removes identical event listeners to avoid duplication
@@ -17,7 +18,7 @@ const {funcBodyEquals} = require("@skaar/core/functions");
  * @param {Function} listener
  * @param {AddEventListenerOptions?} [options]
  */
-function setEvent(target, event, listener, options) {
+export function setEvent(target, event, listener, options) {
     if (!scope.isBrowser()) {
         error("Events are browser only!");
         return
@@ -58,7 +59,7 @@ function setEvent(target, event, listener, options) {
  * @param {HTMLElement|Element|Node} target - target element
  * @param {String|Array} event - event type(s)
  */
-function clearEvent(target, event) {
+export function clearEvent(target, event) {
     if (!scope.isBrowser()) {
         error("Events are browser only!");
         return
@@ -91,8 +92,8 @@ function clearEvent(target, event) {
  * @param {String} type - event type
  * @return {boolean}
  */
-function hasEvent(target, type) {
+export function hasEvent(target, type) {
     return target.__EVENTS__ && target.__EVENTS__[type] && !isEmpty(target.__EVENTS__[type])
 }
 
-module.exports = {setEvent, clearEvent, hasEvent};
+// export default {setEvent, clearEvent, hasEvent};

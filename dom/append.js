@@ -8,9 +8,9 @@
  * @param {HTMLElement|Element|Node} parent - parent element
  * @param {HTMLElement|Element|Node} elements - appended children
  */
-function append(parent, ...elements) {
+export function append(parent, ...elements) {
     window.dispatchEvent(new CustomEvent("x.dom.append", {detail: {parent, elements}}))
     parent.append(...elements);
 }
 
-module.exports = {append}
+// module.exports = {append}

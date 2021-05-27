@@ -1,13 +1,13 @@
-const H = require("./hscript-minimal");
-const {createDom} = require("./render");
-const {View, createView} = require("./view");
-const {VNode, createNode, createText} = require("./vnode");
-const {h} = require("./h");
-const {render} = require("./render");
-const store = require("./store");
+import H from "./hscript-minimal";
+import {createDom, render} from "./render";
+import {createView, View} from "./view";
+import {createNode, createText, VNode} from "./vnode";
+import {h} from "./h";
+import {Store} from "./store";
 
 global.SUI = {
-    View, createView, VNode, createNode, createText, jsx: h, mount: render, createComponent:View.create, renderDom:createDom, Store: store
+    View, createView, VNode, createNode, createText, jsx: h,
+    mount: render, createComponent:View.create, renderDom:createDom, Store
 }
 
 global.h = h;

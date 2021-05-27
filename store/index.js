@@ -1,7 +1,7 @@
-// const {map} = require("../@skaar/core/collections");
-const {error} = require("../@skaar/core/logging");
+// const {map} = require("../core/collections");
+const {error} = require("../core/logging");
 
-function Store({state, mutations}) {
+export function Store({state, mutations}) {
     this.state = state || {};
 
     this.listeners = [];
@@ -28,4 +28,4 @@ function Store({state, mutations}) {
     }
 }
 
-module.exports = {crea}
+// module.exports = {crea}

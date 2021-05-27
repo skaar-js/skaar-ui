@@ -1,29 +1,28 @@
-const {error} = require("@skaar/core/logging");
-const {flatMap} = require("@skaar/core/collections");
-const {createNode} = require("./vnode");
-const {normalize, setElementProps} = require("./utils");
-const {createText} = require("./vnode");
+import {error} from "./core/logging";
+import {flatMap} from "./core/collections";
+import {createNode, createText} from "./vnode";
+import {normalize, setElementProps} from "./utils";
 
-function createElement(tag, attrs, events, parentView) {
+export function createElement(tag, attrs, events, parentView) {
     let el = document.createElement(tag);
     setElementProps(el, attrs, events, parentView);
     return el;
 }
 
-function createTextDom(text) {
+export function createTextDom(text) {
     return document.createTextNode(text);
 }
 
-function createChildrenDom(nodes, parentView, rootElement) {
+export function createChildrenDom(nodes, parentView, rootElement) {
     return nodes.flatMap((n)=>createDom(n, parentView, rootElement))
 }
 
-function createViewDom(view, rootElement) {
+export function createViewDom(view, rootElement) {
     if (view.beforeMount) {
         try {
             view.beforeMount.call(view);
         } catch (e) {
-            setTimeout(error('(' + view.$name + ').beforeMount', e));
+            setTimeout(()=>error('(' + view.$name + ').beforeMount', e));
         }
     }
     if (!view.$nodes) {
@@ -45,7 +44,7 @@ function createViewDom(view, rootElement) {
     return elements
 }
 
-function createNodeDom(node, parentView) {
+export function createNodeDom(node, parentView) {
     if (node.isText) {
         node.element = createTextDom(node.text);
         node.element.__node = node;
@@ -64,11 +63,11 @@ function createNodeDom(node, parentView) {
     return node.element;
 }
 
-function createDom(node, parentView, rootElement) {
+export function createDom(node, parentView, rootElement) {
     return node.$isView ? createViewDom(node, rootElement) : createNodeDom(node, parentView)
 }
 
-function render(view, rootElement) {
+export function render(view, rootElement) {
     if (!rootElement) throw Error('render(): rootElement is undefined');
     let current = rootElement.__app;
     if (current) {
@@ -86,4 +85,4 @@ function render(view, rootElement) {
     rootElement.__app = view
 }
 
-module.exports = {render, createDom, createNodeDom, createViewDom, createTextDom, createChildrenDom, createElement}
+export default {render, createDom, createNodeDom, createViewDom, createTextDom, createChildrenDom, createElement};

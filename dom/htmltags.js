@@ -1,4 +1,4 @@
-const HTMLTags = ["a",
+export const HTMLTags = ["a",
     "abbr",
     "acronym",
     "address",
@@ -135,7 +135,7 @@ const HTMLTags = ["a",
     "wbr",
     "xmp"]
 
-const HTMLEssentialTags = ["a",
+export const HTMLEssentialTags = ["a",
     "abbr",
     "address",
     "aside",
@@ -197,4 +197,4 @@ const HTMLEssentialTags = ["a",
     "u",
     "ul"]
 
-module.exports = {HTMLTags, HTMLEssentialTags}
+// module.exports = {HTMLTags, HTMLEssentialTags}

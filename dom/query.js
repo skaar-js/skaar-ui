@@ -3,12 +3,13 @@
  * @memberOf dom
  */
 
-const {isEl, isEls, isStr, isVal} = require("@skaar/core/types");
-const L = require("@skaar/core/logging");
-const {cls} = require("./classes");
+import {isEl, isEls, isStr, isVal} from "../core/types";
+import {error} from "../core/logging";
+import {cls} from "./classes";
+
 //
-// import {isEl, isEls, isStr, isVal} from "@skaar/core/types";
-// import {error} from "@skaar/core/logging";
+// import {isEl, isEls, isStr, isVal} from "../core/types";
+// import {error} from "../core/logging";
 // import {cls} from "../dom/classes";
 //
 /**
@@ -21,11 +22,11 @@ function $(q, root = document) {
     if (isEl(q)) return Array.of(q);
     if (isEls(q)) return Array.from(q);
     if (!isStr(q)) {
-        L.error(`Query is not string nor element X.$(${q})`);
+        error(`Query is not string nor element X.$(${q})`);
         return null;
     }
     if (!isEl(root)) {
-        L.error(`Query root is not a node!\t[X.$(${q}, ${root})]`);
+        error(`Query root is not a node!\t[X.$(${q}, ${root})]`);
         return null;
     }
     return Array.from(root.querySelectorAll(q));
@@ -40,11 +41,11 @@ function $(q, root = document) {
 function $$(q, root = document) {
     if (isEl(q)) return Array.of(q);
     if (!isStr(q)) {
-        L.error(`Query is not string nor element X.$$(${q})`);
+        error(`Query is not string nor element X.$$(${q})`);
         return null;
     }
     if (!isEl(root)) {
-        L.error(`Query root is not a node!\t[X.$(${q}, ${root})]`);
+        error(`Query root is not a node!\t[X.$(${q}, ${root})]`);
         return null;
     }
     return Array.of(root.querySelector(q));
@@ -58,7 +59,7 @@ function $$(q, root = document) {
  */
 function queryOf(e, maxParent, q) {
     if ((!isVal(e) || !isEl(e))) {
-        L.error(`\nQuery generator's first parameter must be Element/Node! CAUSE: X.queryOf(${e}, ${maxParent})`);
+        error(`\nQuery generator's first parameter must be Element/Node! CAUSE: X.queryOf(${e}, ${maxParent})`);
         return null;
     }
     maxParent = maxParent || document.body;
@@ -94,4 +95,4 @@ function queryOf(e, maxParent, q) {
     }
 }
 
-module.exports = {$, $$, queryOf};
+// module.exports = {$, $$, queryOf};

@@ -1,13 +1,13 @@
-require("@skaar/core/scope")
-const TYPE = require("./type");
-const {updateView} = require("./patch");
-const {debounce} = require("@skaar/core/functions");
-const {error} = require("@skaar/core/logging");
-const {randomId, normalize, sameProps} = require("./utils");
-const {createNode} = require("./vnode");
-const {warn} = require("@skaar/core/logging");
-const {deepClone} = require("@skaar/core/collections");
-const {createText} = require("./vnode");
+import core from "./core/scope";
+import TYPE from "./type";
+import {updateView} from "./patch";
+import {debounce} from "./core/functions";
+import {error, warn} from "./core/logging";
+import {normalize, randomId, sameProps} from "./utils";
+import {createNode, createText} from "./vnode";
+import {deepClone} from "./core/collections";
+
+
 
 /**
  * @param {Object} args.state
@@ -21,7 +21,7 @@ const {createText} = require("./vnode");
  * @param {Function} args.Created
  * @constructor
  */
-function View(args = {}) {
+export function View(args = {}) {
     this.$t = TYPE.VIEW;
     args.name = args.name || 'View' + '::' + randomId();
     this.$name = args.name;
@@ -89,14 +89,14 @@ View.prototype.$renderAndSetNodes = function () {
         try {
             this.beforeCreate();
         } catch (e) {
-            setTimeout(error('(' + this.$name + ').beforeCreate()', e))
+            setTimeout(()=>error('(' + this.$name + ').beforeCreate()', e))
         }
     this.$nodes = this.$renderNodes();
     if (this.Created)
         try {
             this.Created();
         } catch (e) {
-            setTimeout(error('(' + this.$name + ').Created()', e))
+            setTimeout(()=>error('(' + this.$name + ').Created()', e))
         }
     return this
 }
@@ -106,7 +106,7 @@ View.prototype.$destroy = function (getAnchor) {
         try {
             this.beforeDestroy();
         } catch (e) {
-            setTimeout(error('(' + this.$name + ').beforeDestroy()', e));
+            setTimeout(()=>error('(' + this.$name + ').beforeDestroy()', e));
         }
     }
     // first real dom element
@@ -154,11 +154,11 @@ View.prototype.setState = function (fn) {
 // }, 5)
 
 
-function isViewClass(cls) {
+export function isViewClass(cls) {
     return Object.prototype.isPrototypeOf.call(View, cls)
 }
 
-function getViewInstance(view, newArgs) {
+export function getViewInstance(view, newArgs) {
     if (isViewClass(view)) {
         return new view(newArgs)
     }
@@ -171,7 +171,7 @@ function getViewInstance(view, newArgs) {
     throw TypeError("Cannot get view instance of " + view)
 }
 
-function renderView(view, props, children) {
+export function renderView(view, props, children) {
     // // if (!view.props) view.props = {};
     // if (props) {
     //     concat(view.props, props, true);
@@ -187,19 +187,8 @@ function renderView(view, props, children) {
     return view;
 }
 
-/**
- * @typedef View
- * @class
- * @member {Function} beforeCreate
- * @member {Function} Created
- * @member {Function} beforeMount
- * @member {Function} Mounted
- * @member {Function} beforeUpdate
- * @member {Function} Updated
- * @member {Function} beforeDestroy
- */
-module.exports = {
+export default {
     View, isViewClass, getViewInstance, createView: function (args) {
         return new View(args)
     }, renderView
-}
+};
